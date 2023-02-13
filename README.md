@@ -16,10 +16,9 @@ The project pipeline of data collection, processing, training, and evaluation ca
 
 ```
 RetinaPD_Project_Code.ipynb 
-
 ```
 
-#3. The subject characteristics and their statistical comparisons from the UK Biobank can be found in the jupyter notebook 
+# 3. The subject characteristics and their statistical comparisons from the UK Biobank can be found in the jupyter notebook 
 
 ```
 CSV_Population_Characteristics.ipynb
