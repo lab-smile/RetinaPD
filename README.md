@@ -1,6 +1,6 @@
 # RetinaPD
 
-This project is a SMILE Lab work for a paper enitled "Deep Learning Predicts Prevalent and Inciden Parkinson's Disease From UK Biobank Fundus Imaging" in submission to JAMA Open Network. This work is supported by the National Science Foundation under Grant No. (NSF 2123809). 
+This project is a SMILE Lab work for a paper enitled "Deep Learning Predicts Prevalent and Incident Parkinson's Disease From UK Biobank Fundus Imaging" in submission for publication. This work is supported by the National Science Foundation under Grant No. (NSF 2123809). 
 
 The purpose of this project is for the binary classification of Parkinson's Disease from UK Biobank Fundus Imaging 
 
@@ -23,4 +23,6 @@ RetinaPD_Project_Code.ipynb
 ```
 CSV_Population_Characteristics.ipynb
 ```
+
+# 4. The numpy arrays of all results is located in the results folder as a zip file. This can be used in conjunction with the RetinaPD code for the plotting.
 
