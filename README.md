@@ -42,55 +42,58 @@ The shell scripts can be "sectioned" to run either all python experiments or be 
 ## 2. Data pre-processing
 Assuming the raw data has been acquired, the data can be split, resized, and allocated to folders by type. 
 
-``
+```
 sbatch preprocess.py
-``
+```
 
 The outputs will be stored in the data folder for Overall, Prevalent, and Incident data types. 
 
 ## 3. Train-ML models
 Train (and test) machine learning models - SVM (RBF, Linear), Logistic Regression, and Elastic Net
 
-``
+```
 sbatch train_ml.sh
-``
+```
 
 The outputs will be stored as np arrays in the results folder for each evaluation metric.
 
 ## 4. Train-DL models
 Train deep learning models - AlexNet, VGG16, ResNet50, GoogleNet, InceptionV3
 
-``
+```
 sbatch train_dl.sh
-``
+```
 
 The outputs will be stored as Pytorch weight models in the models folder.
 
 ## 5. Test-DL models
 Evaluate each of the deep learning models at test-time.
-``
+
+```
 sbatch test_dl.sh
-``
+```
 
 The outputs are stored as np arrays in the results folder for each evaluation metric. 
 
 ## 6. XAI infidelity and sensitivity
 Estimate the explanation infidelity and sensitivity measures for model robustness evaluation.
-``
+
+```
 sbatch XAI_metrics_test.sh
-``
+```
 
 The outputs will be stored in the results folder under each model and data-type. 
 
 ## 7. Results analysis
 The results can then be collected and visualized. 
-``
+
+```
 Step 1. Confidence Intervals
 sbatch confidence_csv_results.sh	
 
 Step 2. Plots
 sbatch results_plot.sh
-``
+```
 
 The outputs will be stored in the results folder including the csv and pdf's of the plots. 
 
@@ -98,8 +101,8 @@ The outputs will be stored in the results folder including the csv and pdf's of 
 
 Explore the notebook for the dataframes to understand how the subject characteristics and statistics were analyzed.
 
-``
+```
 CSV_Population_Characteristics.ipynb
-``
+```
 
 
