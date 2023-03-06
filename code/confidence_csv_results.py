@@ -19,7 +19,7 @@ def main():
         writer = csv.writer(file, delimiter=',')
 
         #### Edit this for each experiment, i.e. "Overall, Alexnet" -> "Prevalent, AlexNet"
-        writer.writerow([args.experiment_tag + ',' + args.model_name, "Average (95% Confidence Interval)",])
+        writer.writerow([args.experiment_tag + ',' + args.model_name, "Metrics", "Average (95% Confidence Interval)"])
         model = args.model_name
         experiment = args.experiment_tag
         #################################
