@@ -81,8 +81,9 @@ Estimate the explanation infidelity and sensitivity measures for model robustnes
 ```
 sbatch XAI_metrics_test.sh
 ```
-
 The outputs will be stored in the results folder under each model and data-type. 
+
+![alt text](Images/XAI_figures.png)
 
 ## 7. Results analysis
 The results can then be collected and visualized. 
@@ -96,6 +97,8 @@ sbatch results_plot.sh
 ```
 
 The outputs will be stored in the results folder including the csv and pdf's of the plots. 
+
+![alt text](Images/results_figures.png)
 
 ## 8. Population Characteristics
 
