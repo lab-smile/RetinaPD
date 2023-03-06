@@ -41,6 +41,7 @@ The shell scripts can be "sectioned" to run either all python experiments or be 
 
 ## 2. Data pre-processing
 Assuming the raw data has been acquired, the data can be split, resized, and allocated to folders by type. 
+
 ``
 sbatch preprocess.py
 ``
@@ -82,7 +83,7 @@ sbatch XAI_metrics_test.sh
 The outputs will be stored in the results folder under each model and data-type. 
 
 ## 7. Results analysis
-
+The results can then be collected and visualized. 
 ``
 Step 1. Confidence Intervals
 sbatch confidence_csv_results.sh	
