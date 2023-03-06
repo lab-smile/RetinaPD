@@ -1,5 +1,4 @@
 import os
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 from IPython.display import display
 
@@ -7,12 +6,8 @@ from IPython.display import display
 import pandas as pd
 import numpy as np
 
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 from PIL import Image
-
-from skimage.feature import hog
-from skimage.color import rgb2gray
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score,f1_score
@@ -39,8 +34,7 @@ logging.getLogger().setLevel(logging.ERROR)
 
 import cv2
 import time
-
-
+import argparse
 def load_images(fold_path):
     files = os.listdir(fold_path)
 
@@ -101,9 +95,6 @@ def main():
     X_train = scaler.transform(X_train)
     X_test = scaler.transform(X_test)
     #scaler.transform(X_train)
-
-    dtc = SVC(kernel='linear', probability=True, random_state=42)
-    dtc.fit(X_train, y_train)
     
     if model_name == 'svm_linear':
         model = SVC(kernel  = 'linear', probability = True, random_state = 42)
@@ -209,7 +200,7 @@ if __name__ == '__main__':
     np.save(os.path.join(output_base_dir_name, model_name + '_' + 'auc_scores.npy'), auc_scores)
     np.save(os.path.join(output_base_dir_name, model_name + '_' + 'accuracy_scores.npy'), accuracy_scores)
     np.save(os.path.join(output_base_dir_name, model_name + '_' + 'ppv_scores.npy'), ppv_scores)
-    np.save(os.path.join(output_base_dir_name, model_name + '_' + 'npv_score.npy'), npv_scores)
+    np.save(os.path.join(output_base_dir_name, model_name + '_' + 'npv_scores.npy'), npv_scores)
     np.save(os.path.join(output_base_dir_name, model_name + '_' + 'sensitivity_scores.npy'), sensitivity_scores)
     np.save(os.path.join(output_base_dir_name, model_name + '_' + 'specificity_scores.npy'), specificity_scores)
     np.save(os.path.join(output_base_dir_name, model_name + '_' + 'f1_scores.npy'), f1_scores)
@@ -221,7 +212,7 @@ if __name__ == '__main__':
     # print statements
     print('SAVING:', os.path.join(output_base_dir_name, model_name + '_' + 'auc_scores.npy'))
     print('SAVING:', os.path.join(output_base_dir_name, model_name + '_' + 'accuracy_scores.npy'))
-    print('SAVING:', os.path.join(output_base_dir_name, model_name +  '_' + 'ppv_scores.npy'))
+    print('SAVING:', os.path.join(output_base_dir_name, model_name + '_' + 'ppv_scores.npy'))
     print('SAVING:', os.path.join(output_base_dir_name, model_name + '_' + 'npv_scores.npy'))
     print('SAVING:', os.path.join(output_base_dir_name, model_name + '_' + 'sensitivity_scores.npy'))
     print('SAVING:', os.path.join(output_base_dir_name, model_name + '_' + 'specificity_scores.npy'))

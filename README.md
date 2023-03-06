@@ -1,61 +1,99 @@
 # RetinaPD
 
-This project is a SMILE Lab work for a paper entitled "Deep Learning Predicts Prevalent and Incident Parkinson's Disease From UK Biobank Fundus Imaging" in submission for publication. This work is supported by the National Science Foundation under Grant No. (NSF 2123809). 
+This project is a SMILE Lab work for a paper entitled "Deep Learning Predicts Prevalent and Incident Parkinson's Disease From UK Biobank Fundus Imaging" in submission for publication. This work is supported by the National Science Foundation under Grant No. (NSF 2123809).  
 
-This research conducts a comprehensive evaluation of deep learning and machine learning models of Parkinson's disease from UK Biobank Fundus Imaging. 
+The purpose of this project is for the binary classification of Parkinson's Disease from UK Biobank Fundus Imaging 
 
+The work can currently be reproduced using UKB resources sourced under the privacy of the SMILE Lab. External reproduction cannot be accomplished without our permission for privacy reasons.
 
-# 1. Packages
+## 1. Packages
 
-The environment has been tested in HiPerGator using PyTorch 1.7.1 (training and evaluation) and RAPIDS 21.12 (CuDF) 
+The project uses the following packages in general
 
-# 2. Preprocessing (Data acquisition, resizing, and splitting)
+- (Deep Learning) Pytorch 1.7.1 + Torchvision
+- (Machine Learning) Scikit-Learn
+- (Image Processing) CV2, Imageio, Pillow
+- (Plotting) Seaborn, Matplotlib
+- (XAI) Captum
+- (CSV) Rapids CUDF (21.12) 
 
-## 2.1 (Jupyter Version) Run sections 1-3 in the jupyter notebook: RetinaPD_Project_Code.ipynb 
-
-## 2.2 (Terminal Version) Run the following commands in terminal to copy the data. Edit the parameters in the slurm script as necessary (email, log outputs, etc.) 
-
-```
-cp /blue/ruogu.fang/charlietran/PD_Reproduction/data/PD_raw_data.zip -d your_data_blue_project_folder
-unzip -q your_data_blue_project_folder/PD_raw_data.zip -d your_data_blue_project_folder/data/
-```
-
-Then, run the preprocess.py with the provided slurm script in the terminal. Edit the parameters in the slurm script as necessary (email, log outputs, etc.) 
+An environment can be installed with one of the following commands (mamba or conda). 
 
 ```
-sbatch pre_process_PD.sh 
-(EDIT:) python preprocess.py --project_dir /blue/ruogu.fang/charlietran/PD_Reproduction/ 
+STEP 1.
+- (OPTION 1. HPG-preferred) mamba create -p .../conda/envs/name_of_environment python=3.8
+- (OPTION 2. Local/non-HPG) conda create -n name_of_environment python=3.8
+
+STEP 2. Install Pytorch first
+- (OPTION 1. HPG-preferred) mamba install pytorch=1.7.1 torchvision torchaudio cudatoolkit=11.0 -c pytorch 
+- (OPTION 2. Local/non-HPG) pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
+
+STEP 3. Install remaining packages
+pip install -r requirements.txt 
 ```
+Install the packages found by online search using the traditional pip or conda install methods if an error is found.
 
-# 3. Model training and Evaluation
 
-## 3.1 (Jupyter Version) Run sections 4 and 5 for the deep learning and machine learning evaluation in the jupyter notebook: RetinaPD_Project_Code.ipynb
-## 3.2 (Terminal Version) Run the deep learning and machine learning models using slurm 
+## ** Guidelines ** 
+Change all paths as necessary in the scripts hereon. If the script is not run in a shell script manner, the python script can still be made runnable (e.g., !python script.py --args) 
 
-For the deep learning models, change the following arguments below according to the python Parser. The official paper used 100 epochs with early stopping. The available models are alexnet, vgg, resnet, googlenet, and inceptionv3. The term experiment tag refers to overall, prevalent, or incident. 
-```
-sbatch DL_PD_models.sh
-(EDIT:) python train_dl.py --model_name alexnet --experiment_tag overall  --project_dir /blue/ruogu.fang/charlietran/PD_Reproduction/ --epochs 100
-```
-For the machine learning models, change the following arguments below according to the python Parser. The avaukabke nideks are svm_rbf, svm_linear, logistic_regression, and elastic_net. The term experiment tag refers to overall, prevalent, or incident. 
-```
-sbatch ML_PD_models.sh
-(EDIT:) python train_ml.py --model_name svm_rbf --experiment_tag overall  --project_dir /blue/ruogu.fang/charlietran/PD_Reproduction/ 
-```
+## 2. Data pre-processing
+Assuming the raw data has been acquired, the data can be split, resized, and allocated to folders by type. 
+``
+sbatch preprocess.py
+``
 
-# 4. Test-time Explanation and Plotting
+The outputs will be stored in the data folder for Overall, Prevalent, and Incident data types. 
 
-Run the remaining portion of the jupyter notebook: RetinaPD_Project_Code.ipynb, Sections 6 and 7. The numpy arrays of all results is located in the results folder as a zip file. This can be used in conjunction with the RetinaPD code for the plotting.
+## 3. Train-ML models
+Train (and test) machine learning models - SVM (RBF, Linear), Logistic Regression, and Elastic Net
 
-# 5. Subject Clinical Measures
+``
+sbatch train_ml.sh
+``
 
-The subject characteristics and their statistical comparisons from the UK Biobank can be found in the jupyter notebook using the Rapids (21.12) CuDF library. 
+The outputs will be stored as np arrays in the results folder for each evaluation metric.
 
-```
+## 4. Train-DL models
+Train deep learning models - AlexNet, VGG16, ResNet50, GoogleNet, InceptionV3
+``
+sbatch train_dl.sh
+``
+
+The outputs will be stored as Pytorch weight models in the models folder.
+
+## 5. Test-DL models
+
+``
+sbatch test_dl.sh
+``
+
+The outputs are stored as np arrays in the resuls folder for each evaluation metric. 
+
+## 6. XAI infidelity and sensitivity
+
+``
+sbatch XAI_metrics_test.sh	
+``
+
+## 7. Results analysis
+
+``
+Step 1. Confidence Intervals
+sbatch confidence_csv_results.sh	
+
+Step 2. Plots
+sbatch results_plot.sh
+``
+
+The outputs will be stored in the results folder including the csv and pdf's of the plots. 
+
+## 8. Population Characteristics
+
+Explore the notebook for the dataframes to understand how the subject characteristics and statistics were analyzed.
+
+``
 CSV_Population_Characteristics.ipynb
-```
-
-
-
+``
 
 

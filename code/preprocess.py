@@ -11,7 +11,7 @@ warnings.filterwarnings("ignore")
 import logging
 logging.getLogger().setLevel(logging.ERROR)
 import argparse
-
+import time
 
 parser = argparse.ArgumentParser(description = 'What the program does')
 parser.add_argument('--project_directory', type = str)
@@ -170,8 +170,8 @@ def main():
   data_splitter(input_path = os.path.join(project_directory, 'data/Raw_Data/'),  
                 PD_tag = 'PD_prevalent', 
                 HC_tag = 'PD_prevalent_hc',
-                output_folder = os.path.join(project_directory, '/data/Prevalent_KFold_Data/R4/'),
-                seed_number = 75) 
+                output_folder = os.path.join(project_directory, 'data/Prevalent_KFold_Data/R4/'),
+                seed_number = 75)  
   
   data_splitter(input_path = os.path.join(project_directory, 'data/Raw_Data/'), 
                 PD_tag = 'PD_prevalent', 
@@ -212,6 +212,9 @@ def main():
                 seed_number = 100)
 
 if __name__ == '__main__':
+  time1 = time.time()
   args = parser.parse_args()
   project_directory = args.project_directory
   main()
+  time2 = time.time()
+  print((time2 - time1)/60, 'minutes')

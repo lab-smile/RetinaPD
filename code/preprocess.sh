@@ -9,23 +9,25 @@
 #SBATCH --mem-per-cpu=25gb
 #SBATCH --distribution=cyclic:cyclic
 #SBATCH --time=6:00:00               # Time limit hrs:min:sec
-#SBATCH --partition=gpu
-#SBATCH --gpus=a100:1
 #SBATCH --output=preprocess_PD_%j.log   # Standard output and error log
 #SBATCH --account=ruogu.fang
 #SBATCH --qos=ruogu.fang
 
 
 
+#OPTION 1: HPG KERNEL MODULE
 module load pytorch/1.7.1
 
-cd /blue/ruogu.fang/charlietran/PD_Reproduction/code/
+# OPTION 2: SELF CREATED ENV
+#module load conda
+#conda activate /blue/ruogu.fang/charlietran/PD_Reproduction_V2/RetinaPD
+#export PATH=/blue/ruogu.fang/charlietran/PD_Reproduction_V2/RetinaPD/bin:$PATH
+
+cd /blue/ruogu.fang/charlietran/PD_Reproduction_V2/code/
 
 
-## This code technically does not need GPU. It will be here recklessly as I simply copied over the slurm script. 
-## Also does not really take 6 hours, maybe like an hour? 
-# I load module load pytorch.... for no good reason really except that it contains all of the basic packages that I need from sklearn
-python preprocess.py --project_dir /blue/ruogu.fang/charlietran/PD_Reproduction/ 
+# We do not explicily need Pytorch but the PyTorch Environment Module from HPG contains a lot of good packages.
+python preprocess.py --project_dir ..
 
 
 
