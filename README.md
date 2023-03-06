@@ -29,13 +29,15 @@ STEP 2. Install Pytorch first
 - (OPTION 2. Local/non-HPG) pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 
 STEP 3. Install remaining packages
-pip install -r requirements.txt 
+pip install -r requirements_hpg.txt 
 ```
 Install the packages found by online search using the traditional pip or conda install methods if an error is found.
 
 
 ## ** Guidelines ** 
 Change all paths as necessary in the scripts hereon. If the script is not run in a shell script manner, the python script can still be made runnable (e.g., !python script.py --args) 
+
+The shell scripts can be "sectioned" to run either all python experiments or be run multiple times partially. There is no requirement, except for the results plotting, for the shell scripts to run every line at once. 
 
 ## 2. Data pre-processing
 Assuming the raw data has been acquired, the data can be split, resized, and allocated to folders by type. 
@@ -68,13 +70,15 @@ The outputs will be stored as Pytorch weight models in the models folder.
 sbatch test_dl.sh
 ``
 
-The outputs are stored as np arrays in the resuls folder for each evaluation metric. 
+The outputs are stored as np arrays in the results folder for each evaluation metric. 
 
 ## 6. XAI infidelity and sensitivity
 
 ``
 sbatch XAI_metrics_test.sh	
 ``
+
+The outputs will be stored in the results folder under each model and data-type. 
 
 ## 7. Results analysis
 
