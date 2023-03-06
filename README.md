@@ -58,6 +58,7 @@ The outputs will be stored as np arrays in the results folder for each evaluatio
 
 ## 4. Train-DL models
 Train deep learning models - AlexNet, VGG16, ResNet50, GoogleNet, InceptionV3
+
 ``
 sbatch train_dl.sh
 ``
@@ -65,7 +66,7 @@ sbatch train_dl.sh
 The outputs will be stored as Pytorch weight models in the models folder.
 
 ## 5. Test-DL models
-
+Evaluate each of the deep learning models at test-time.
 ``
 sbatch test_dl.sh
 ``
@@ -73,9 +74,9 @@ sbatch test_dl.sh
 The outputs are stored as np arrays in the results folder for each evaluation metric. 
 
 ## 6. XAI infidelity and sensitivity
-
+Estimate the explanation infidelity and sensitivity measures for model robustness evaluation.
 ``
-sbatch XAI_metrics_test.sh	
+sbatch XAI_metrics_test.sh
 ``
 
 The outputs will be stored in the results folder under each model and data-type. 
