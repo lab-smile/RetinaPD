@@ -83,7 +83,7 @@ sbatch XAI_metrics_test.sh
 ```
 The outputs will be stored in the results folder under each model and data-type. 
 
-![alt text](images/Figure_4_XAI_Metrics.pdf)
+![alt text](images/XAI_Metrics.png)
 
 ## 7. Results analysis
 The results can then be collected and visualized. 
@@ -98,7 +98,7 @@ sbatch results_plot.sh
 
 The outputs will be stored in the results folder including the csv and pdf's of the plots. 
 
-![alt text](Images/results_figures.png)
+![alt text](images/results_figures.png)
 
 ## 8. Population Characteristics
 
