@@ -193,6 +193,10 @@ if __name__ == '__main__':
     print('---------------------------------------------------------------')
 
 
+    parkinson_probability = np.array(parkinson_probability, dtype = object)
+    class_predictions = np.array(class_predictions, dtype = object)
+    ground_truth = np.array(ground_truth, dtype = object) 
+    
 
     output_base_dir_name = os.path.join(base_folder, 'results', experiment_tag, model_name)
     os.makedirs(output_base_dir_name, exist_ok = True)

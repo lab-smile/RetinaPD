@@ -16,14 +16,14 @@
 
 
 #OPTION 1: HPG KERNEL MODULE
-module load pytorch/1.7.1
+#module load pytorch/1.7.1
 
 # OPTION 2: SELF CREATED ENV
-#module load conda
-#conda activate /blue/ruogu.fang/charlietran/PD_Reproduction_V2/RetinaPD
-#export PATH=/blue/ruogu.fang/charlietran/PD_Reproduction_V2/RetinaPD/bin:$PATH
+module load conda
+conda activate /blue/ruogu.fang/charlietran/conda/envs/RetinaPD/
+export PATH=/blue/ruogu.fang/charlietran/conda/envs/RetinaPD/bin:$PATH
 
-cd /blue/ruogu.fang/charlietran/PD_Reproduction_V2/code/
+cd /blue/ruogu.fang/charlietran/PD_Reproduction_V4/code/
 
 
 # We do not explicily need Pytorch but the PyTorch Environment Module from HPG contains a lot of good packages.

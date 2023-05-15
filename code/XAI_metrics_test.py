@@ -9,7 +9,7 @@ import torch.backends.cudnn as cudnn
 import torchvision.models as models
 import numpy as np
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 from sklearn.metrics import classification_report
 from torchvision import transforms
 from sklearn.metrics import roc_auc_score
@@ -27,6 +27,7 @@ warnings.filterwarnings("ignore")
 import logging
 logging.getLogger().setLevel(logging.ERROR)
 import time
+import matplotlib.font_manager
 parser = argparse.ArgumentParser(description = 'What the program does')
 parser.add_argument('--model_name', type = str)
 parser.add_argument('--experiment_tag', type = str)

@@ -21,7 +21,7 @@ logging.getLogger().setLevel(logging.ERROR)
 #import tensorboard_logger as tb_logger
 #from torchsampler import ImbalancedDatasetSampler
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 import argparse 
 
 parser = argparse.ArgumentParser(description = 'What the program does')
@@ -49,7 +49,7 @@ def main():
     ])
  
     train = datasets.ImageFolder(train_path, transform= train_transform)
-    val  = datasets.ImageFolder(test_path, transform= train_transform)
+    val  = datasets.ImageFolder(test_path, transform= val_transform)
 
     train_dataloader = DataLoader(train, batch_size=train_bsz, shuffle = True)
     val_dataloader = DataLoader(val, batch_size = val_bsz, shuffle = True)    

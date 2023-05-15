@@ -5,6 +5,8 @@ import os
 import numpy as np 
 import pandas as pd 
 from sklearn import metrics
+
+import matplotlib.font_manager
 parser = argparse.ArgumentParser(description = 'What the program does')
 parser.add_argument('--experiment_tag', type = str)
 parser.add_argument('--project_dir', type = str)
@@ -145,8 +147,13 @@ def main():
 
     x_points = [0, 1]
     y_points = [0, 1]
-
-    plt.legend(['Logistic Regression (0.70)', 'Elastic Net (0.71)', 'Linear SVM (0.70)', 'RBF SVM (0.76)', 'AlexNet (0.78)', 'VGG-16 (0.77)', 'GoogleNet (0.72)', 'Inception-V3 (0.66)', 'ResNet-50 (0.72)'], fontsize = 10)
+    
+    if args.experiment_tag == "overall":
+        plt.legend(['Logistic Regression (0.67)', 'Elastic Net (0.67)', 'Linear SVM (0.67)', 'RBF SVM (0.72)', 'AlexNet (0.83)', 'VGG-16 (0.78)', 'GoogleNet (0.76)', 'Inception-V3 (0.69)', 'ResNet-50 (0.71)'], fontsize = 10)
+    if args.experiment_tag == "prevalent":
+        plt.legend(['Logistic Regression (0.69)', 'Elastic Net (0.66)', 'Linear SVM (0.70)', 'RBF SVM (0.73)', 'AlexNet (0.79)', 'VGG-16 (0.75)', 'GoogleNet (0.70)', 'Inception-V3 (0.61)', 'ResNet-50 (0.65)'], fontsize = 10)
+    if args.experiment_tag == "incident":
+        plt.legend(['Logistic Regression (0.57)', 'Elastic Net (0.59)', 'Linear SVM (0.57)', 'RBF SVM (0.68)', 'AlexNet (0.82)', 'VGG-16 (0.81)', 'GoogleNet (0.74)', 'Inception-V3 (0.73)', 'ResNet-50 (0.74)'], fontsize = 10)
 
     plt.plot(x_points, y_points, linestyle='dashed', color = 'gray', linewidth = 2.5)
     plt.xlim([0,1])
@@ -156,8 +163,17 @@ def main():
 
     plt.tick_params(axis='both', which='major', length = 8, labelsize = 12, width = 1)
     plt.tight_layout()
-    plt.savefig(os.path.join(args.project_dir, 'results', args.experiment_tag + "_AUC_plot.pdf"))
-    plt.title(args.experiment_tag + " Parkinson's ROC Curve", fontsize = 14, **font)
+    plt.subplots_adjust(top=0.90)
+
+    if args.experiment_tag == 'overall':
+        plt.title("Overall" + " Parkinson's ROC Curve", fontsize = 14, **font)
+    if args.experiment_tag == 'prevalent':
+        plt.title("Prevalent" + " Parkinson's ROC Curve", fontsize = 14, **font)
+    if args.experiment_tag == 'incident':
+        plt.title("Incident" + " Parkinson's ROC Curve", fontsize = 14, **font)
+        
+    plt.savefig(os.path.join(args.project_dir, 'results', args.experiment_tag + "_AUC_plot.svg"), format = 'svg')
+    plt.savefig(os.path.join(args.project_dir, 'results', args.experiment_tag + "_AUC_plot.pdf"), format = 'pdf')
 
         
 if __name__ == '__main__':

@@ -23,9 +23,12 @@ def data_splitter(input_path,
                   seed_number):
   path = input_path
   files = os.listdir(path)
-  hc_path = os.path.join(path, PD_tag)
-  pd_path = os.path.join(path, HC_tag)
+  hc_path = os.path.join(path, HC_tag)
+  pd_path = os.path.join(path, PD_tag)
   
+
+
+
   N = 5 
   ids = [] 
   for img in os.listdir(pd_path):
@@ -74,7 +77,7 @@ def data_splitter(input_path,
               for img in os.listdir(pd_path):
                   if str(eid[0:7]) in img:
                       image =  plt.imread(os.path.join(pd_path,img))           
-                      image =cv2.resize(image, dim)
+                      image = cv2.resize(image, dim)
                       #print(os.path.join(save_pd_train_path,img))
                       imageio.imwrite(os.path.join(save_pd_train_path,img), image)
   

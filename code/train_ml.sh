@@ -15,17 +15,17 @@
 
 
 # OPTION 1: HPG KERNEL MODULE
-module load pytorch/1.13
+#module load pytorch/1.13
 
 # OPTION 2: SELF CREATED ENV
-#module load conda
-#conda activate /blue/ruogu.fang/charlietran/PD_Reproduction_V2/conda/envs/RetinaPD/
-#export PATH=/blue/ruogu.fang/charlietran/PD_Reproduction_V2/conda/envs/RetinaPD/bin:$PATH
-#cd /blue/ruogu.fang/charlietran/PD_Reproduction_V2/code/
+module load conda
+
+conda activate /blue/ruogu.fang/charlietran/conda/envs/RetinaPD/
+export PATH=/blue/ruogu.fang/charlietran/conda/envs/RetinaPD/bin:$PATH
+
+cd /blue/ruogu.fang/charlietran/PD_Reproduction_V4/code/
 
 
-#This is similar to the DL models sh file but there are no epochs for ML models
-# I load module load pytorch.... for no good reason really except that it contains all of the basic packages that I need from sklearn
 python train_ml.py --model_name svm_rbf --experiment_tag overall  --project_dir ..
 python train_ml.py --model_name svm_rbf --experiment_tag prevalent --project_dir ..
 python train_ml.py --model_name svm_rbf --experiment_tag incident  --project_dir ..

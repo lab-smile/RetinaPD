@@ -5,6 +5,7 @@ import os
 import numpy as np 
 import pandas as pd 
 from sklearn import metrics
+import matplotlib.font_manager
 parser = argparse.ArgumentParser(description = 'What the program does')
 parser.add_argument('--experiment_tag', type = str)
 parser.add_argument('--project_dir', type = str)
@@ -75,9 +76,15 @@ def main():
     dataset['GoogleNet'] = scores[6]
     dataset['Inception-V3'] = scores[7]
     dataset['ResNet-50'] = scores[8]
-
-
-    ax = sns.boxplot(data=dataset, width = 0.4, palette = 'BuGn')
+    
+    if args.experiment_tag == 'overall':
+        palette_color = 'BuGn'
+    if args.experiment_tag == 'prevalent':
+        palette_color = 'PuBu'
+    if args.experiment_tag == 'incident':
+        palette_color = 'RdPu'
+    #plt.figure(figsize = (11,14))
+    ax = sns.boxplot(data=dataset, width = 0.4, palette = palette_color)
     #sns.set_style("whitegrid")
     for line in ax.get_lines():
         line.set_color('black')
@@ -91,9 +98,17 @@ def main():
     ax.tick_params(axis='both', which='major', labelsize=12)
     ax.tick_params(axis='both', which='minor', labelsize=12)
 
-    plt.title(args.experiment_tag + " Parkinson's Classification", fontsize = 14)
+    if args.experiment_tag == 'overall':
+        plt.title("Overall" + " Parkinson's Classification", fontsize = 14, **font)
+    if args.experiment_tag == 'prevalent':
+        plt.title("Prevalent" + " Parkinson's Classification", fontsize = 14, **font)
+    if args.experiment_tag == 'incident':
+        plt.title("Incident" + " Parkinson's Classification", fontsize = 14, **font)
+    
+    plt.yticks([0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]) 
     plt.tight_layout()
-    plt.savefig(os.path.join(args.project_dir, 'results', args.experiment_tag + "_accuracy_plot.pdf"))
+    plt.savefig(os.path.join(args.project_dir, 'results', args.experiment_tag + "_accuracy_plot.svg"), format = 'svg')
+    plt.savefig(os.path.join(args.project_dir, 'results', args.experiment_tag + "_accuracy_plot.pdf"), format = 'pdf')
     plt.show()
                          
                                

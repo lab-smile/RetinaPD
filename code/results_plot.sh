@@ -19,28 +19,28 @@
 
 # OPTION 2: SELF CREATED ENV
 module load conda
-conda activate /blue/ruogu.fang/charlietran/PD_Reproduction_V2/conda/envs/RetinaPD/
-export PATH=/blue/ruogu.fang/charlietran/PD_Reproduction_V2/conda/envs/RetinaPD/bin:$PATH
+conda activate /blue/ruogu.fang/charlietran/conda/envs/RetinaPD/
+export PATH=/blue/ruogu.fang/charlietran/conda/envs/RetinaPD/bin:$PATH
 
-cd /blue/ruogu.fang/charlietran/PD_Reproduction_V2/code/
+cd /blue/ruogu.fang/charlietran/PD_Reproduction_V4/code/
 
 
 # The results plots were split across scripts because
 # one for organization
 # two because matplotlib does not cooperate well with figure environments unless coded properly
-python acc_results_plots.py --experiment_tag overall  --project_dir ..
-python auc_results_plots.py --experiment_tag overall  --project_dir ..
-python sensitivity_results_plots.py --experiment_tag overall  --project_dir ..
-python infidelity_results_plots.py --experiment_tag overall --project_dir ..
+#python acc_results_plots.py --experiment_tag overall  --project_dir ..
+#python auc_results_plots.py --experiment_tag overall  --project_dir ..
+#python sensitivity_results_plots.py --experiment_tag overall  --project_dir ..
+#python infidelity_results_plots.py --experiment_tag overall --project_dir ..
 
-python acc_results_plots.py --experiment_tag prevalent  --project_dir ..
-python auc_results_plots.py --experiment_tag prevalent  --project_dir ..
-python sensitivity_results_plots.py --experiment_tag prevalent  --project_dir ..
-python infidelity_results_plots.py --experiment_tag prevalent --project_dir ..
+#python acc_results_plots.py --experiment_tag prevalent  --project_dir ..
+#python auc_results_plots.py --experiment_tag prevalent  --project_dir ..
+#python sensitivity_results_plots.py --experiment_tag prevalent  --project_dir ..
+#python infidelity_results_plots.py --experiment_tag prevalent --project_dir ..
 
-python acc_results_plots.py --experiment_tag incident  --project_dir ..
-python auc_results_plots.py --experiment_tag incident  --project_dir ..
-python sensitivity_results_plots.py --experiment_tag incident  --project_dir ..
-python infidelity_results_plots.py --experiment_tag incident--project_dir ..
+#python acc_results_plots.py --experiment_tag incident  --project_dir ..
+#python auc_results_plots.py --experiment_tag incident  --project_dir ..
+python sensitivity_results_plots.py --project_dir ..
+python infidelity_results_plots.py --project_dir ..
 
 date
